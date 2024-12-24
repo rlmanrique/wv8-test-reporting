@@ -1,0 +1,3161 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "ee7s474xynugwe"
+      },
+      "description": "Recall values with different EF values",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 1,
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT ef, recall AS \"recall_ef16\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 16 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_16",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, recall AS \"recall_ef24\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 24 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_24",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, recall AS \"recall_ef48\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 48 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_48",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, recall AS \"recall_ef128\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 128 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_128",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, recall AS \"recall_ef256\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 256 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_256",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, recall AS \"recall_ef512\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 512 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_512",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        }
+      ],
+      "title": "Recall",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "ef": true,
+              "timestamp": false
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "recall_ef16": ""
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "ee7s474xynugwe"
+      },
+      "description": "Latency values with different EF values",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, mean_latency AS \"ef16\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 16 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_16",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, mean_latency AS \"ef24\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 24 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_24",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, mean_latency AS \"ef48\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 48 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_48",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, mean_latency AS \"ef128\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 128 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_128",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, mean_latency AS \"ef256\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 256 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_256",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, mean_latency AS \"ef512\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 512 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_512",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        }
+      ],
+      "title": "Mean latency",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "ef": true,
+              "timestamp": false
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "recall_ef16": ""
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "ee7s474xynugwe"
+      },
+      "description": "QPS values with different EF values",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 1500,
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, qps AS \"qps_ef16\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 16 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_16",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "qps",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, qps AS \"qps_ef24\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 24 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_24",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, qps AS \"qps_ef48\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 48 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_48",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, qps AS \"qps_ef128\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 128 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_128",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, qps AS \"qps_ef256\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 256 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_256",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, qps AS \"qps_ef512\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 512 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_512",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        }
+      ],
+      "title": "QPS",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "ef": true,
+              "timestamp": false
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "recall_ef16": ""
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "ee7s474xynugwe"
+      },
+      "description": "P99 Latency values with different EF values",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, p99_latency AS \"ef16\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 16 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_16",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, p99_latency AS \"ef24\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 24 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_24",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, p99_latency AS \"ef48\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 48 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_48",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, p99_latency AS \"ef128\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 128 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_128",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, p99_latency AS \"ef256\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 256 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_256",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "ee7s474xynugwe"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT ef, p99_latency AS \"ef512\", \"timestamp\", branch FROM benchmark_results WHERE (ef = 512 AND branch = '${Branch}') LIMIT 50 ",
+          "refId": "ef_512",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ef",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"recall_ef16\"",
+                "parameters": [
+                  {
+                    "name": "recall",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "\"timestamp\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "branch",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999b99ba-89ab-4cde-b012-3193f812c1d3",
+                  "properties": {
+                    "field": "ef",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      16
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "889a89ab-89ab-4cde-b012-3193f8292b84",
+                  "properties": {
+                    "field": "branch",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "${Branch}"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898ab9a-0123-4456-b89a-b193f7fd06ac",
+              "type": "group"
+            },
+            "whereString": "(ef = 16 AND branch = '${Branch}')"
+          },
+          "table": "benchmark_results"
+        }
+      ],
+      "title": "P99 Latency",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "ef": true,
+              "timestamp": false
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "recall_ef16": ""
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "main",
+          "value": "main"
+        },
+        "description": "Branch name",
+        "label": "branch",
+        "name": "Branch",
+        "options": [
+          {
+            "selected": true,
+            "text": "main",
+            "value": "main"
+          }
+        ],
+        "query": "main",
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "2024-12-23T12:00:00.000Z",
+    "to": "2024-12-23T14:01:42.942Z"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Weaviate stats",
+  "uid": "ce7t4gxlq6i9sf",
+  "version": 14,
+  "weekStart": ""
+}
