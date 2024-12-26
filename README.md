@@ -30,3 +30,15 @@ To run it:
 ```bash
 python generate_benchmark_results.py
 ```
+
+
+To run it towards InfluxDB:
+
+```bash
+python store_results_influx.py \
+    --url "http://localhost:8086" \
+    --token "your-influxdb-token" \
+    --org "your-organization" \
+    --bucket "benchmark-results" \
+    --file_path "./results"
+```
