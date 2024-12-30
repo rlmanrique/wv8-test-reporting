@@ -34,7 +34,8 @@ def prepare_data_points(results, bucket):
                 "run_id": result['run_id'],
                 "branch": result['branch'],
                 "commit": result['commit'],
-                "ef": result['ef']
+                "ef": result['ef'],
+                "test_id": result['test_id']
             },
             "fields": {
                 "mean_latency": float(result['meanLatency']),
