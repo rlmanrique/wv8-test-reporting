@@ -24,7 +24,6 @@ def connect_to_database(url, token, org):
         org=org
     )
 
-
 def prepare_data_points(results, bucket):
     data_points = []
     for result in results:
@@ -35,13 +34,18 @@ def prepare_data_points(results, bucket):
                 "branch": result['branch'],
                 "commit": result['commit'],
                 "ef": result['ef'],
-                "test_id": result['test_id']
+                "test_id": result['test_id'],
+                "dataset_file": result['dataset_file'],
             },
             "fields": {
                 "mean_latency": float(result['meanLatency']),
                 "p99_latency": float(result['p99Latency']),
                 "qps": float(result['qps']),
-                "recall": float(result['recall'])
+                "recall": float(result['recall']),
+                "heap_alloc_bytes": float(result['heap_alloc_bytes']),
+                "heap_inuse_bytes": float(result['heap_inuse_bytes']),
+                "heap_sys_bytes": float(result['heap_sys_bytes']),
+                "import_time": float(result['importTime'])
             },
             "time": parser.parse(result['timestamp'])
         }
